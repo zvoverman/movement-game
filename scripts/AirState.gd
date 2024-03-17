@@ -3,6 +3,8 @@ extends State
 class_name AirState
 
 @export var run_state : State
+@export var crouch_state : State
+@export var walk_state : State
 @export var slide_state : State
 @export var run_animation : String
 @export var crouch_animation : String
@@ -13,7 +15,10 @@ func on_enter():
 
 func state_process(delta):
 	if (character.is_on_floor() and Input.is_action_pressed("crouch")):
-		slide()
+		if (abs(character.velocity.x) >= walk_state.speed):
+			slide()
+		else:
+			crouch()
 	elif (character.is_on_floor()):
 		run()
 
@@ -23,6 +28,10 @@ func state_input(event : InputEvent):
 func run():
 	next_state = run_state
 	playback.travel(run_animation)
+	
+func crouch():
+	next_state = crouch_state
+	playback.travel(crouch_animation)
 	
 func slide():
 	next_state = slide_state

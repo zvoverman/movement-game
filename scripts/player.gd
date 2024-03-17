@@ -6,6 +6,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var left = false
 var right = false
+const MAX_VELOCITY = 400
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -26,11 +27,15 @@ func _physics_process(delta):
 		elif right:
 			$Sprite2D.flip_h = false
 			velocity.x = lerp(velocity.x, 1 * speed, acceleration)
-		
-	if (velocity.x >= 400):
-		velocity.x = 400
-	elif (velocity.x <= -400):
-		velocity.x = -400
+		elif is_on_floor():
+			# Idle State stop
+			velocity.x = lerp(velocity.x, 0.0, 0.2)
+	
+	# Cap velocity
+	if (velocity.x >= MAX_VELOCITY):
+		velocity.x = MAX_VELOCITY
+	elif (velocity.x <= -MAX_VELOCITY):
+		velocity.x = -MAX_VELOCITY
 	
 	move_and_slide()
 	

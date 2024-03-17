@@ -555,39 +555,42 @@ walk_animation = "walk"
 jump_animation = "jump"
 speed = 0.0
 
-[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("run_state", "slide_state")]
+[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("run_state", "crouch_state", "walk_state", "slide_state")]
 script = ExtResource("5_ao10q")
 run_state = NodePath("../Run")
+crouch_state = NodePath("../Crouch")
+walk_state = NodePath("../Walk")
 slide_state = NodePath("../Slide")
 run_animation = "run"
 crouch_animation = "crouch"
 speed = 150.0
-acceleration = 0.2
+acceleration = 0.7
 
-[node name="Crouch" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "air_state", "run_state", "original_collision", "crouch_collision")]
+[node name="Crouch" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "air_state", "original_collision", "crouch_collision")]
 script = ExtResource("7_51bqn")
 idle_state = NodePath("../Idle")
 air_state = NodePath("../Air")
-run_state = NodePath("../Run")
 original_collision = NodePath("../../OriginalCollision")
 crouch_collision = NodePath("../../CrouchCollision")
 idle_animation = "idle"
-run_animation = "run"
 jump_animation = "jump"
 speed = 100.0
 
-[node name="Slide" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "air_state", "crouch_state", "run_state", "original_collision", "crouch_collision")]
+[node name="Slide" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "air_state", "crouch_state", "walk_state", "run_state", "original_collision", "crouch_collision")]
 script = ExtResource("8_3ejxf")
 idle_state = NodePath("../Idle")
 air_state = NodePath("../Air")
 crouch_state = NodePath("../Crouch")
+walk_state = NodePath("../Walk")
 run_state = NodePath("../Run")
 original_collision = NodePath("../../OriginalCollision")
 crouch_collision = NodePath("../../CrouchCollision")
 idle_animation = "idle"
 run_animation = "run"
+walk_animation = "walk"
 crouch_animation = "crouch"
 jump_animation = "jump"
+can_move = false
 speed = 0.0
 acceleration = 0.2
 
@@ -601,11 +604,11 @@ crouch_animation = "crouch"
 jump_animation = "jump"
 speed = 300.0
 
-[node name="Walk" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "air_state", "slide_state", "run_state")]
+[node name="Walk" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "air_state", "crouch_state", "run_state")]
 script = ExtResource("9_c2we4")
 idle_state = NodePath("../Idle")
 air_state = NodePath("../Air")
-slide_state = NodePath("../Slide")
+crouch_state = NodePath("../Crouch")
 run_state = NodePath("../Run")
 idle_animation = "idle"
 crouch_animation = "crouch"

@@ -4,7 +4,7 @@ class_name WalkState
 
 @export var idle_state : State
 @export var air_state : State
-@export var slide_state : State
+@export var crouch_state : State
 @export var run_state : State
 @export var idle_animation : String
 @export var crouch_animation : String
@@ -13,7 +13,7 @@ class_name WalkState
 
 func state_process(delta):
 	if (Input.is_action_pressed("crouch")):
-		slide()
+		crouch()
 	if (Input.is_action_pressed("jump")):
 		jump()
 	if (not Input.is_action_pressed("left") and not Input.is_action_pressed("right")):
@@ -35,8 +35,8 @@ func idle():
 	next_state = idle_state
 	playback.travel(idle_animation)
 	
-func slide():
-	next_state = slide_state
+func crouch():
+	next_state = crouch_state
 	playback.travel(crouch_animation)
 
 
