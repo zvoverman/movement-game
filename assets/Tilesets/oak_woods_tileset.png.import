@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b657c84by64v"
-path="res://.godot/imported/oak_woods_tileset.png-ef307a4b80b7b2c790d963774fd87030.ctex"
+path="res://.godot/imported/oak_woods_tileset.png-4cc1243b2822df1da29d9e4c3e0af246.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/oak_woods_tileset.png"
-dest_files=["res://.godot/imported/oak_woods_tileset.png-ef307a4b80b7b2c790d963774fd87030.ctex"]
+source_file="res://assets/Tilesets/oak_woods_tileset.png"
+dest_files=["res://.godot/imported/oak_woods_tileset.png-4cc1243b2822df1da29d9e4c3e0af246.ctex"]
 
 [params]
 

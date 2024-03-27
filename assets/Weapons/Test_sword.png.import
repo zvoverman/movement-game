@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdkgqfv3tun23"
-path="res://.godot/imported/monk.png-29fd1704eff1a28d2646b87bfae193d6.ctex"
+uid="uid://bfxe6l82fp4iv"
+path="res://.godot/imported/Test_sword.png-8c3822b80447f20e44b86fd1ac19cc7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/monk.png"
-dest_files=["res://.godot/imported/monk.png-29fd1704eff1a28d2646b87bfae193d6.ctex"]
+source_file="res://assets/Weapons/Test_sword.png"
+dest_files=["res://.godot/imported/Test_sword.png-8c3822b80447f20e44b86fd1ac19cc7e.ctex"]
 
 [params]
 

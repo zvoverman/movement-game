@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvoly2pqtpqaw"
-path="res://.godot/imported/chicken.png-bb0db6ce8a40b9eb12f28ffa743d83c8.ctex"
+uid="uid://c83xyb0v5iw6"
+path="res://.godot/imported/Enemy1_Front.png-3635002a1c81f4520bed1413b4c5932f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/chicken.png"
-dest_files=["res://.godot/imported/chicken.png-bb0db6ce8a40b9eb12f28ffa743d83c8.ctex"]
+source_file="res://assets/Enemies/Enemy1_Front.png"
+dest_files=["res://.godot/imported/Enemy1_Front.png-3635002a1c81f4520bed1413b4c5932f.ctex"]
 
 [params]
 

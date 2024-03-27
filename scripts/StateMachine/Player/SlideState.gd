@@ -17,7 +17,7 @@ class_name SlideState
 @export var jump_animation : String
 
 func on_enter():
-	character.velocity.x *= 1.1
+	character.velocity.x *= 1.2
 	original_collision.disabled = true
 	crouch_collision.disabled = false
 

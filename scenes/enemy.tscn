@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://dujmclyli2sfi"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_v8xqx"]
+[ext_resource type="Texture2D" uid="uid://c83xyb0v5iw6" path="res://assets/Enemies/Enemy1_Front.png" id="2_k3uvx"]
+[ext_resource type="Script" path="res://scripts/StateMachine/CharacterStateMachine.gd" id="2_qo3cs"]
+[ext_resource type="Script" path="res://scripts/StateMachine/Enemy/EnemyTestIdleState.gd" id="3_5fclr"]
+[ext_resource type="Script" path="res://scripts/StateMachine/Enemy/EnemyPatrolState.gd" id="4_c6dvl"]
+[ext_resource type="Script" path="res://scripts/StateMachine/Enemy/EnemyTestAgroState.gd" id="6_sbj6m"]
+[ext_resource type="Script" path="res://scripts/StateMachine/Enemy/EnemyTestAttackState.gd" id="7_k8b8w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7l56f"]
+radius = 6.0
+height = 32.0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nsmut"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4hdb"]
+size = Vector2(282, 152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3v2n"]
+size = Vector2(29, 19)
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 255
+collision_mask = 17
+script = ExtResource("1_v8xqx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_k3uvx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7l56f")
+
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
+script = ExtResource("2_qo3cs")
+character = NodePath("..")
+animation_tree = NodePath("../AnimationTree")
+current_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("patrol_state", "agro_state")]
+script = ExtResource("3_5fclr")
+patrol_state = NodePath("../Patrol")
+agro_state = NodePath("../Agro")
+
+[node name="Patrol" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("4_c6dvl")
+patrol_width = 50.0
+speed = 150.0
+
+[node name="Agro" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state", "attack_state", "agro_area", "attack_area")]
+script = ExtResource("6_sbj6m")
+idle_state = NodePath("../Idle")
+attack_state = NodePath("../Attack")
+agro_area = NodePath("../../AgroArea")
+attack_area = NodePath("../../AttackArea")
+speed = 150.0
+
+[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("agro_state", "attack_area")]
+script = ExtResource("7_k8b8w")
+agro_state = NodePath("../Agro")
+attack_area = NodePath("../../AttackArea")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_nsmut")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AgroArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AgroArea"]
+shape = SubResource("RectangleShape2D_m4hdb")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(0.5, -5.5)
+shape = SubResource("RectangleShape2D_h3v2n")
+
+[connection signal="body_entered" from="AgroArea" to="CharacterStateMachine/Idle" method="_on_agro_area_body_entered"]
+[connection signal="body_exited" from="AgroArea" to="CharacterStateMachine/Agro" method="_on_agro_area_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="CharacterStateMachine/Agro" method="_on_attack_area_body_entered"]

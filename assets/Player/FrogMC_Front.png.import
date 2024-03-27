@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0yti2om52k4q"
-path="res://.godot/imported/simple_tileset.png-50a4b9cd68539476f06d621bae4da827.ctex"
+uid="uid://btjvy2v68bnos"
+path="res://.godot/imported/FrogMC_Front.png-3345c1f0cd4c958f58b258533bfdbad0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/simple_tileset.png"
-dest_files=["res://.godot/imported/simple_tileset.png-50a4b9cd68539476f06d621bae4da827.ctex"]
+source_file="res://assets/Player/FrogMC_Front.png"
+dest_files=["res://.godot/imported/FrogMC_Front.png-3345c1f0cd4c958f58b258533bfdbad0.ctex"]
 
 [params]
 
